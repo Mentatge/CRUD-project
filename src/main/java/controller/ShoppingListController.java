@@ -14,7 +14,7 @@ import service.ShoppingListService;
 @Log4j2
 public class ShoppingListController {
 
-    private ShoppingListService shoppingListService;
+    private final ShoppingListService shoppingListService;
     @Autowired
     public ShoppingListController(ShoppingListService shoppingListService) {
         this.shoppingListService = shoppingListService;
@@ -23,6 +23,7 @@ public class ShoppingListController {
     //написать эксепшен хендлер, если айди не валидный и в базе ничего не найдено
     @PostMapping(value = "/getShoppingList", produces = "application/json")
     public ResponseEntity<ShoppingListResponse> getShoppingList(@Validated @RequestBody ShoppingListRequest request) throws Exception {
+        log.info("ShoppingListController - getRequest");
         return ResponseEntity.ok().body(shoppingListService.getShoppingList(request));
     }
 }

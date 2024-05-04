@@ -30,7 +30,7 @@ public class ShoppingListService {
      * @return список покупок клиента
      */
     public ShoppingListResponse getShoppingList(ShoppingListRequest request) throws JsonProcessingException {
-
+        log.info("ShoppingListResponse - Get Request");
         return ShoppingListResponse
                 .builder()
                 .product(getShoppingListJson(request))
@@ -41,7 +41,9 @@ public class ShoppingListService {
         String result;
         ObjectMapper objectMapper = new ObjectMapper();
         objectMapper.setSerializationInclusion(JsonInclude.Include.NON_NULL);
+        log.info("ShoppingListResponse - try to Mapping Json");
         result = objectMapper.writerWithDefaultPrettyPrinter().writeValueAsString(ediblesProductService.findByUserId(request.getId()));
+        log.info("ShoppingListResponse - Successfully Mapped Json");
         return result;
     }
 }
