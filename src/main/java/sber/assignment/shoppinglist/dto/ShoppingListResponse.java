@@ -2,14 +2,14 @@ package sber.assignment.shoppinglist.dto;
 
 import lombok.*;
 
+/**
+ * Класс, представляющий ответ на запрос списка покупок
+ */
 @Getter
 @Setter
 @Builder
 @NoArgsConstructor
 @AllArgsConstructor
-/**
- * Класс, представляющий ответ на запрос списка покупок
- */
 public class ShoppingListResponse {
     /**
      * Название продукта

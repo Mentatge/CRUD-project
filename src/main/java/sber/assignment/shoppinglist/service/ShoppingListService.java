@@ -40,8 +40,10 @@ public class ShoppingListService {
     }
 
     /**
-     * @param request
-     * @return
+     * Вспомогательный метод для getShoppingList для перевода request в строку
+     *
+     * @param request запрос
+     * @return возвращает результат в виде строки
      * @throws JsonProcessingException
      */
     public String getShoppingListJson(GetShoppingListRequest request) throws JsonProcessingException {

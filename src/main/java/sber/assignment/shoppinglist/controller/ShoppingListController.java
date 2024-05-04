@@ -11,11 +11,12 @@ import org.springframework.web.bind.annotation.RestController;
 import sber.assignment.shoppinglist.dto.*;
 import sber.assignment.shoppinglist.service.ShoppingListService;
 
-@RestController
-@Log4j2
 /**
  * Контроллер
  */
+
+@RestController
+@Log4j2
 public class ShoppingListController {
 
     private final ShoppingListService shoppingListService;
@@ -33,13 +34,13 @@ public class ShoppingListController {
     }
 
     @PostMapping(value = "/insertShoppingList", produces = "application/json")
-    public ResponseEntity<ShoppingListResponse> insertShoppingList(@Validated @RequestBody InsertShoppingListRequest request) throws Exception {
+    public ResponseEntity<ShoppingListResponse> insertShoppingList(@Validated @RequestBody InsertShoppingListRequest request) {
         log.info("ShoppingListController - insertRequest");
         return ResponseEntity.ok().body(shoppingListService.insertShoppingList(request));
     }
 
     @DeleteMapping(value = "/deleteShoppingList", produces = "application/json")
-    public ResponseEntity<ShoppingListResponse> deleteShoppingList(@Validated @RequestBody GetShoppingListRequest request) throws Exception {
+    public ResponseEntity<ShoppingListResponse> deleteShoppingList(@Validated @RequestBody GetShoppingListRequest request) {
         log.info("ShoppingListController - deleteRequest");
         return ResponseEntity.ok().body(shoppingListService.deleteShoppingList(request));
     }

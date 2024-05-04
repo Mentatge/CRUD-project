@@ -9,9 +9,6 @@ import lombok.*;
 @NoArgsConstructor
 @AllArgsConstructor
 public class GetShoppingListRequest {
-    /**
-     * индификатор пользователя для поиска его корзины в БД
-     */
     @NonNull
     private int userId;
 }
