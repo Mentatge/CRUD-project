@@ -1,4 +1,4 @@
-package dto;
+package sber.assignment.shoppinglist.dto;
 
 import lombok.*;
 

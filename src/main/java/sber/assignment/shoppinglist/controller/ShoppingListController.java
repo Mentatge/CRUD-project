@@ -1,6 +1,5 @@
-package controller;
+package sber.assignment.shoppinglist.controller;
 
-import dto.*;
 import lombok.extern.log4j.Log4j2;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -8,7 +7,9 @@ import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
-import service.ShoppingListService;
+import sber.assignment.shoppinglist.dto.ShoppingListRequest;
+import sber.assignment.shoppinglist.dto.ShoppingListResponse;
+import sber.assignment.shoppinglist.service.ShoppingListService;
 
 @RestController
 @Log4j2

@@ -1,4 +1,4 @@
-package dto;
+package sber.assignment.shoppinglist.dto;
 
 
 import lombok.*;
@@ -13,5 +13,5 @@ public class ShoppingListRequest {
      * индификатор пользователя для поиска его корзины в БД
      */
     @NonNull
-    private int id;
+    private int userId;
 }

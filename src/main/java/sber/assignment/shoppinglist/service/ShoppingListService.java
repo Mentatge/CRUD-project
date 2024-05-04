@@ -1,11 +1,11 @@
-package service;
+package sber.assignment.shoppinglist.service;
 
 
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
-import dto.ShoppingListRequest;
-import dto.ShoppingListResponse;
+import sber.assignment.shoppinglist.dto.ShoppingListRequest;
+import sber.assignment.shoppinglist.dto.ShoppingListResponse;
 import lombok.extern.log4j.Log4j2;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -42,7 +42,7 @@ public class ShoppingListService {
         ObjectMapper objectMapper = new ObjectMapper();
         objectMapper.setSerializationInclusion(JsonInclude.Include.NON_NULL);
         log.info("ShoppingListResponse - try to Mapping Json");
-        result = objectMapper.writerWithDefaultPrettyPrinter().writeValueAsString(ediblesProductService.findByUserId(request.getId()));
+        result = objectMapper.writerWithDefaultPrettyPrinter().writeValueAsString(ediblesProductService.findByUserId(request.getUserId()));
         log.info("ShoppingListResponse - Successfully Mapped Json");
         return result;
     }
