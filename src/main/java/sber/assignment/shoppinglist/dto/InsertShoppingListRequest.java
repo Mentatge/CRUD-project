@@ -8,10 +8,11 @@ import lombok.*;
 @NoArgsConstructor
 @AllArgsConstructor
 public class InsertShoppingListRequest {
-        /**
-         * индификатор пользователя для вставки его корзины в БД
-         */
-        @NonNull
-        private int userId;
-        private String shoppingListName;
+    /**
+     * индификатор пользователя для вставки его корзины в БД
+     */
+    @NonNull
+    private int userId;
+    private String shoppingListName;
+
 }

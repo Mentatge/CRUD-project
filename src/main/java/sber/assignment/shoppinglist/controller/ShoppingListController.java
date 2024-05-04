@@ -13,6 +13,9 @@ import sber.assignment.shoppinglist.service.ShoppingListService;
 
 @RestController
 @Log4j2
+/**
+ * Контроллер
+ */
 public class ShoppingListController {
 
     private final ShoppingListService shoppingListService;

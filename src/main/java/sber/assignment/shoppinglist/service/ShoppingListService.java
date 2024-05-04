@@ -39,6 +39,11 @@ public class ShoppingListService {
                 .build();
     }
 
+    /**
+     * @param request
+     * @return
+     * @throws JsonProcessingException
+     */
     public String getShoppingListJson(GetShoppingListRequest request) throws JsonProcessingException {
         String result;
         ObjectMapper objectMapper = new ObjectMapper();
@@ -48,6 +53,13 @@ public class ShoppingListService {
         log.info("ShoppingListResponse - Successfully Mapped Json");
         return result;
     }
+
+    /**
+     * Вставка в список покупок элемента на основе запроса
+     *
+     * @param request запрос
+     * @return ответ о статусе выполнения операции
+     */
 
     public ShoppingListResponse insertShoppingList(InsertShoppingListRequest request) {
         log.info("ShoppingListResponse - insert Request");
@@ -61,12 +73,18 @@ public class ShoppingListService {
                 .build();
     }
 
+    /**
+     * Удалить список покупок на основе запроса.
+     *
+     * @param request запрос на удаление списка покупок
+     * @return ответ о статусе выполнения операции
+     */
     public ShoppingListResponse deleteShoppingList(GetShoppingListRequest request) {
         log.info("ShoppingListResponse - delete Request");
         EdiblesProduct ediblesProduct = new EdiblesProduct();
         ediblesProduct.setUserId(request.getUserId());
         ediblesProductService.delete(request.getUserId());
-        return  ShoppingListResponse
+        return ShoppingListResponse
                 .builder()
                 .status(200)
                 .build();

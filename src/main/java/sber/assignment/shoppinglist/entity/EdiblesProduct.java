@@ -10,6 +10,9 @@ import lombok.*;
 @NoArgsConstructor
 @AllArgsConstructor
 @Table(name = "SHOPPING_LIST", schema = "PUBLIC")
+/**
+ * Генерация bd для CRUD
+ */
 public class EdiblesProduct {
 
     @Id

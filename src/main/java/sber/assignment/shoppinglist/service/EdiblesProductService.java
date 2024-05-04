@@ -16,6 +16,11 @@ public class EdiblesProductService {
 
     private final EdiblesProductRepository ediblesProductRepository;
 
+    /**
+     * Конструктор
+     *
+     * @param ediblesProductRepository объект из репозитория
+     */
     @Autowired
     public EdiblesProductService(EdiblesProductRepository ediblesProductRepository) {
         this.ediblesProductRepository = ediblesProductRepository;
@@ -24,6 +29,7 @@ public class EdiblesProductService {
     public void save(EdiblesProduct ediblesProduct) {
         ediblesProductRepository.save(ediblesProduct);
     }
+
     public void delete(int id) {
         ediblesProductRepository.myDeleteByUserId(id);
     }

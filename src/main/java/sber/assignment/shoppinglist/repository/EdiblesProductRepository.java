@@ -9,9 +9,14 @@ import org.springframework.data.repository.query.Param;
 
 import java.util.List;
 
+
+/**
+ * Репозиторий для работы со списком продуктов
+ */
 public interface EdiblesProductRepository extends JpaRepository<EdiblesProduct, Long> {
     @Query(value = "SELECT e FROM EdiblesProduct e WHERE e.userId = :userId ")
     List<EdiblesProduct> findByUserId(@Param("userId") int userId);
+
     @Modifying
     @Transactional
     @Query("DELETE FROM EdiblesProduct e WHERE e.userId = :userId")
