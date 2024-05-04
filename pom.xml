@@ -10,7 +10,7 @@
     </parent>
     <groupId>sber.assignment</groupId>
     <artifactId>shopping-list</artifactId>
-    <version>0.0.4-SNAPSHOT</version>
+    <version>0.0.5-SNAPSHOT</version>
     <name>sber.assignment</name>
     <description>sber.assignment</description>
     <properties>
@@ -25,7 +25,8 @@
         <dependency>
             <groupId>com.h2database</groupId>
             <artifactId>h2</artifactId>
-            <scope>runtime</scope>
+            <version>1.4.193</version>
+<!--            <scope>runtime</scope>-->
         </dependency>
         <dependency>
             <groupId>org.postgresql</groupId>

@@ -13,11 +13,19 @@ import java.util.List;
  */
 @Service
 public class EdiblesProductService {
+
     private final EdiblesProductRepository ediblesProductRepository;
 
     @Autowired
     public EdiblesProductService(EdiblesProductRepository ediblesProductRepository) {
         this.ediblesProductRepository = ediblesProductRepository;
+    }
+
+    public void save(EdiblesProduct ediblesProduct) {
+        ediblesProductRepository.save(ediblesProduct);
+    }
+    public void delete(int id) {
+        ediblesProductRepository.myDeleteByUserId(id);
     }
 
     public List<EdiblesProduct> findByUserId(int userId) {

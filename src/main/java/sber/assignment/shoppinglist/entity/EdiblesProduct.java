@@ -1,9 +1,6 @@
 package sber.assignment.shoppinglist.entity;
 
-import jakarta.persistence.Column;
-import jakarta.persistence.Entity;
-import jakarta.persistence.Id;
-import jakarta.persistence.Table;
+import jakarta.persistence.*;
 import lombok.*;
 
 @Entity
@@ -12,10 +9,11 @@ import lombok.*;
 @Builder
 @NoArgsConstructor
 @AllArgsConstructor
-@Table(name = "SHOPPING_LIST")
+@Table(name = "SHOPPING_LIST", schema = "PUBLIC")
 public class EdiblesProduct {
 
     @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
     @Column(name = "ID")
     private int id;
 
