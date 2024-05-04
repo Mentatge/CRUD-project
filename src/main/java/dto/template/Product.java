@@ -1,4 +1,4 @@
-package dto;
+package dto.template;
 
 public interface Product {
 

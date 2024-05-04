@@ -1,10 +1,6 @@
 package dto;
 
-
 import lombok.*;
-
-import java.util.List;
-
 
 @Getter
 @Setter
@@ -12,5 +8,5 @@ import java.util.List;
 @NoArgsConstructor
 @AllArgsConstructor
 public class ShoppingListResponse {
-    private List<Product> product;
+    private String product;
 }
