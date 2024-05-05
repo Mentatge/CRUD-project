@@ -10,7 +10,7 @@
     </parent>
     <groupId>sber.assignment</groupId>
     <artifactId>shopping-list</artifactId>
-    <version>0.0.6-SNAPSHOT</version>
+    <version>0.0.7-SNAPSHOT</version>
     <name>sber.assignment</name>
     <description>sber.assignment</description>
     <properties>

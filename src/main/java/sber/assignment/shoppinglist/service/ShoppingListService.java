@@ -94,7 +94,6 @@ public class ShoppingListService {
                 .build();
     }
 
-
     /**
      * Обновление списка покупок на основе запроса.
      *
