@@ -10,7 +10,7 @@ import lombok.*;
 @Builder
 @NoArgsConstructor
 @AllArgsConstructor
-public class InsertShoppingListRequest {
+public class InsertAndUpdateShoppingListRequest {
     @NonNull
     private int userId;
     private String shoppingListName;

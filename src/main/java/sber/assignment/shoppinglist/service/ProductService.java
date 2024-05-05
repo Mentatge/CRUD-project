@@ -1,7 +1,7 @@
 package sber.assignment.shoppinglist.service;
 
 
-import sber.assignment.shoppinglist.entity.EdiblesProduct;
+import sber.assignment.shoppinglist.entity.Product;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import sber.assignment.shoppinglist.repository.ProductRepository;
@@ -26,15 +26,15 @@ public class ProductService {
         this.productRepository = productRepository;
     }
 
-    public void save(EdiblesProduct ediblesProduct) {
-        productRepository.save(ediblesProduct);
+    public void save(Product product) {
+        productRepository.save(product);
     }
 
     public void delete(int id) {
         productRepository.myDeleteByUserId(id);
     }
 
-    public List<EdiblesProduct> findByUserId(int userId) {
+    public List<Product> findByUserId(int userId) {
         return productRepository.findByUserId(userId);
     }
 

@@ -8,7 +8,7 @@ import lombok.*;
 @Builder
 @NoArgsConstructor
 @AllArgsConstructor
-public class GetShoppingListRequest {
+public class GetAndDeleteShoppingListRequest {
     @NonNull
     private int userId;
 }

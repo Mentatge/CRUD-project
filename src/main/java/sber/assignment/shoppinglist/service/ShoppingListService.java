@@ -5,13 +5,13 @@ import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import org.springframework.http.HttpStatus;
-import sber.assignment.shoppinglist.dto.GetShoppingListRequest;
-import sber.assignment.shoppinglist.dto.InsertShoppingListRequest;
+import sber.assignment.shoppinglist.dto.GetAndDeleteShoppingListRequest;
+import sber.assignment.shoppinglist.dto.InsertAndUpdateShoppingListRequest;
 import sber.assignment.shoppinglist.dto.ShoppingListResponse;
 import lombok.extern.log4j.Log4j2;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import sber.assignment.shoppinglist.entity.EdiblesProduct;
+import sber.assignment.shoppinglist.entity.Product;
 
 import java.util.List;
 
@@ -34,7 +34,7 @@ public class ShoppingListService {
      * @param request - запрос от фронта с id списка покупок клиента
      * @return список покупок клиента
      */
-    public ShoppingListResponse getShoppingList(GetShoppingListRequest request) throws JsonProcessingException {
+    public ShoppingListResponse getShoppingList(GetAndDeleteShoppingListRequest request) throws JsonProcessingException {
         log.info("ShoppingListResponse - Get Request");
         return ShoppingListResponse
                 .builder()
@@ -49,7 +49,7 @@ public class ShoppingListService {
      * @return возвращает результат в виде строки
      * @throws JsonProcessingException возврат ошибки
      */
-    public String getShoppingListJson(GetShoppingListRequest request) throws JsonProcessingException {
+    public String getShoppingListJson(GetAndDeleteShoppingListRequest request) throws JsonProcessingException {
         String result;
         ObjectMapper objectMapper = new ObjectMapper();
         objectMapper.setSerializationInclusion(JsonInclude.Include.NON_NULL);
@@ -66,12 +66,12 @@ public class ShoppingListService {
      * @return ответ о статусе выполнения операции
      */
 
-    public ShoppingListResponse insertShoppingList(InsertShoppingListRequest request) {
+    public ShoppingListResponse insertShoppingList(InsertAndUpdateShoppingListRequest request) {
         log.info("ShoppingListResponse - insert Request");
-        EdiblesProduct ediblesProduct = new EdiblesProduct();
-        ediblesProduct.setUserId(request.getUserId());
-        ediblesProduct.setProductName(request.getShoppingListName());
-        productService.save(ediblesProduct);
+        Product product = new Product();
+        product.setUserId(request.getUserId());
+        product.setProductName(request.getShoppingListName());
+        productService.save(product);
         return ShoppingListResponse
                 .builder()
                 .status(HttpStatus.OK.value())
@@ -84,13 +84,13 @@ public class ShoppingListService {
      * @param request запрос на удаление списка покупок
      * @return ответ о статусе выполнения операции
      */
-    public ShoppingListResponse deleteShoppingList(GetShoppingListRequest request) {
+    public ShoppingListResponse deleteShoppingList(GetAndDeleteShoppingListRequest request) {
         log.info("ShoppingListResponse - delete Request");
 
-        List<EdiblesProduct> existingProducts = productService.findByUserId(request.getUserId());
+        List<Product> existingProducts = productService.findByUserId(request.getUserId());
 
         if (!existingProducts.isEmpty()) {
-            for (EdiblesProduct product : existingProducts) {
+            for (Product product : existingProducts) {
                 productService.delete(product.getId());
             }
             return ShoppingListResponse
@@ -111,11 +111,11 @@ public class ShoppingListService {
      * @param request запрос на обновление списка покупок
      * @return ответ о статусе выполнения операции
      */
-    public ShoppingListResponse updateShoppingList(InsertShoppingListRequest request) {
+    public ShoppingListResponse updateShoppingList(InsertAndUpdateShoppingListRequest request) {
         log.info("ShoppingListResponse - update Request");
-        List<EdiblesProduct> existingProducts = productService.findByUserId(request.getUserId());
+        List<Product> existingProducts = productService.findByUserId(request.getUserId());
         if (!existingProducts.isEmpty()) {
-            for (EdiblesProduct existingProduct : existingProducts) {
+            for (Product existingProduct : existingProducts) {
                 existingProduct.setProductName(request.getShoppingListName());
                 productService.save(existingProduct);
             }

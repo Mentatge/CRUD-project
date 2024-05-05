@@ -1,57 +1,48 @@
 # Shopping List Service
 
-This project provides a service for managing shopping lists. It includes functionality for retrieving, inserting, and deleting shopping lists.
+## Описание проекта
 
-## Overview
+Shopping List Service представляет собой веб-приложение для управления списком покупок. Он предоставляет API для добавления, обновления, удаления и получения списка покупок пользователей.
 
-The Shopping List Service consists of several components:
+## Структура проекта
 
-- **Controller**: Handles incoming HTTP requests and delegates them to the appropriate service methods.
-- **Service**: Implements business logic for managing shopping lists.
-- **Repository**: Provides data access methods for interacting with the database.
-- **DTO (Data Transfer Object)**: Contains classes for representing request and response data.
-- **Entity**: Represents the structure of the shopping list items in the database.
+Проект структурирован следующим образом:
 
-## Components
+- **Controller**: Контроллеры обрабатывают входящие HTTP-запросы и делегируют их обработку соответствующим сервисам.
+- **DTO**: (Data Transfer Objects) используются для передачи данных между клиентом и сервером.
+- **Entity**: Сущности представляют объекты, хранящиеся в базе данных, такие как продукты из списка покупок.
+- **Repository**: Репозитории предоставляют методы для взаимодействия с базой данных.
+- **Service**: Сервисы содержат бизнес-логику и выполняют операции над данными.
+- **Exception**: Здесь обрабатываются исключения, возникающие в приложении.
 
-### Controller
+## Используемые технологии
 
-The `ShoppingListController` class handles HTTP requests related to shopping lists. It maps incoming requests to appropriate service methods and returns the corresponding HTTP responses.
+- **Java 17**: Язык программирования, используемый для разработки приложения.
+- **Spring Boot**: Фреймворк для создания веб-приложений на основе Spring.
+- **Spring Data JPA**: Инструмент для удобной работы с базой данных через Hibernate.
+- **Lombok**: Библиотека для уменьшения шаблонного кода в Java-проектах.
 
-### Service
+## Инструкции по развертыванию
 
-The `ShoppingListService` class implements business logic for managing shopping lists. It contains methods for retrieving, inserting, and deleting shopping lists. It interacts with the repository to access data.
+1. Убедитесь, что у вас установлены Java и Maven.
+2. Склонируйте репозиторий на свой локальный компьютер.
+3. Запустите приложение с помощью команды `mvn spring-boot:run`.
+4. Проверьте работу API, обратившись к соответствующим эндпоинтам через любой клиент API.
 
-### Repository
+## Эндпоинты
 
-The `EdiblesProductRepository` interface provides data access methods for performing CRUD (Create, Read, Update, Delete) operations on shopping list items in the database. It extends the JpaRepository interface provided by Spring Data JPA.
+- **GET /getShoppingList**: Получение списка покупок пользователя.
+- **POST /insertShoppingList**: Добавление элемента в список покупок.
+- **DELETE /deleteShoppingList**: Удаление списка покупок.
+- **PUT /updateShoppingList**: Обновление элемента в списке покупок.
 
-### DTO
+## Обработка исключений
 
-The DTO (Data Transfer Object) package contains classes for representing request and response data. These classes are used for communication between the controller and the service layer.
+Исключения, возникающие во время выполнения, обрабатываются с помощью механизма `@ControllerAdvice`, который перехватывает и обрабатывает исключения глобально для всего приложения.
 
-### Entity
+## Вклад
 
-The `EdiblesProduct` class represents the structure of shopping list items in the database. It is annotated with JPA annotations to define the mapping between Java objects and database tables.
+Этот проект разработан mentatge в рамках тестового задания для Сбер.
 
-## Usage
-
-To use the Shopping List Service, follow these steps:
-
-1. **Setup Database**: Ensure that the database is properly configured and accessible. The service interacts with the database using Spring Data JPA.
-
-2. **Run Application**: Deploy the application to a servlet container (e.g., Tomcat) or run it as a standalone Spring Boot application.
-
-3. **Send Requests**: Send HTTP requests to the appropriate endpoints provided by the controller (`/getShoppingList`, `/insertShoppingList`, `/deleteShoppingList`) to retrieve, insert, or delete shopping lists.
-
-## Dependencies
-
-- Spring Boot
-- Spring Data JPA
-- Lombok
-- Log4j2
-
-## Authors
-
-- [Your Name]
+Если вы хотите внести вклад или исправить ошибку, пожалуйста, напишите мне или отправьте pull-request.
 

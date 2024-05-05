@@ -13,7 +13,7 @@ import lombok.*;
 @NoArgsConstructor
 @AllArgsConstructor
 @Table(name = "SHOPPING_LIST", schema = "PUBLIC")
-public class EdiblesProduct {
+public class Product {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
