@@ -1,19 +1,21 @@
 package sber.assignment.shoppinglist.service;
 
+import java.util.List;
 
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
+
+import lombok.extern.log4j.Log4j2;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 import org.springframework.http.HttpStatus;
+
+import sber.assignment.shoppinglist.entity.Product;
 import sber.assignment.shoppinglist.dto.GetAndDeleteShoppingListRequest;
 import sber.assignment.shoppinglist.dto.InsertAndUpdateShoppingListRequest;
 import sber.assignment.shoppinglist.dto.ShoppingListResponse;
-import lombok.extern.log4j.Log4j2;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Service;
-import sber.assignment.shoppinglist.entity.Product;
-
-import java.util.List;
 
 @Service
 @Log4j2
@@ -23,6 +25,11 @@ public class ShoppingListService {
      */
     private final ProductService productService;
 
+    /**
+     * Конструктр с параметром объекта
+     *
+     * @param productService объект
+     */
     @Autowired
     public ShoppingListService(ProductService productService) {
         this.productService = productService;
@@ -65,7 +72,6 @@ public class ShoppingListService {
      * @param request запрос
      * @return ответ о статусе выполнения операции
      */
-
     public ShoppingListResponse insertShoppingList(InsertAndUpdateShoppingListRequest request) {
         log.info("ShoppingListResponse - insert Request");
         Product product = new Product();

@@ -1,5 +1,0 @@
-INSERT INTO SHOPPING_LIST (id, product_name) VALUES (1, 'NAME5');
-INSERT INTO SHOPPING_LIST (id, product_name) VALUES (2, 'NAME4');
-INSERT INTO SHOPPING_LIST (id, product_name) VALUES (3, 'NAME3');
-INSERT INTO SHOPPING_LIST (id, product_name) VALUES (4, 'NAME2');
-INSERT INTO SHOPPING_LIST (id, product_name) VALUES (5, 'NAME1');

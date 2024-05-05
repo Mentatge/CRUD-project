@@ -10,7 +10,7 @@
     </parent>
     <groupId>sber.assignment</groupId>
     <artifactId>shopping-list</artifactId>
-    <version>0.1.1-SNAPSHOT</version>
+    <version>0.1.2-SNAPSHOT</version>
     <name>sber.assignment</name>
     <description>sber.assignment</description>
     <properties>
@@ -26,7 +26,7 @@
             <groupId>com.h2database</groupId>
             <artifactId>h2</artifactId>
             <version>1.4.193</version>
-<!--            <scope>runtime</scope>-->
+            <!--            <scope>runtime</scope>-->
         </dependency>
         <dependency>
             <groupId>org.postgresql</groupId>
@@ -51,6 +51,13 @@
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-data-jpa</artifactId>
+        </dependency>
+
+        <!-- Зависимость для валидации -->
+        <dependency>
+            <groupId>jakarta.validation</groupId>
+            <artifactId>jakarta.validation-api</artifactId>
+            <version>3.0.0</version>
         </dependency>
     </dependencies>
 
