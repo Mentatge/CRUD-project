@@ -14,5 +14,4 @@ public class InsertShoppingListRequest {
     @NonNull
     private int userId;
     private String shoppingListName;
-
 }

@@ -13,7 +13,7 @@ import java.util.List;
 /**
  * Репозиторий для работы со списком продуктов
  */
-public interface EdiblesProductRepository extends JpaRepository<EdiblesProduct, Long> {
+public interface ProductRepository extends JpaRepository<EdiblesProduct, Long> {
     @Query(value = "SELECT e FROM EdiblesProduct e WHERE e.userId = :userId ")
     List<EdiblesProduct> findByUserId(@Param("userId") int userId);
 

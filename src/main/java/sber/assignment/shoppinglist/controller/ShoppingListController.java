@@ -4,10 +4,7 @@ import lombok.extern.log4j.Log4j2;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.validation.annotation.Validated;
-import org.springframework.web.bind.annotation.DeleteMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 import sber.assignment.shoppinglist.dto.*;
 import sber.assignment.shoppinglist.service.ShoppingListService;
 
@@ -44,5 +41,13 @@ public class ShoppingListController {
         log.info("ShoppingListController - deleteRequest");
         return ResponseEntity.ok().body(shoppingListService.deleteShoppingList(request));
     }
+
+    @PutMapping(value = "/updateShoppingList", produces = "application/json")
+    public ResponseEntity<ShoppingListResponse> updateShoppingList(@Validated @RequestBody InsertShoppingListRequest request) {
+        log.info("ShoppingListController - updateRequest");
+        return ResponseEntity.ok().body(shoppingListService.updateShoppingList(request));
+    }
+
+
 
 }

@@ -12,17 +12,19 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import sber.assignment.shoppinglist.entity.EdiblesProduct;
 
+import java.util.List;
+
 @Service
 @Log4j2
 public class ShoppingListService {
     /**
      * Экземпляр по работе с продуктами
      */
-    private final EdiblesProductService ediblesProductService;
+    private final ProductService productService;
 
     @Autowired
-    public ShoppingListService(EdiblesProductService ediblesProductService) {
-        this.ediblesProductService = ediblesProductService;
+    public ShoppingListService(ProductService productService) {
+        this.productService = productService;
     }
 
     /**
@@ -44,14 +46,14 @@ public class ShoppingListService {
      *
      * @param request запрос
      * @return возвращает результат в виде строки
-     * @throws JsonProcessingException
+     * @throws JsonProcessingException возврат ошибки
      */
     public String getShoppingListJson(GetShoppingListRequest request) throws JsonProcessingException {
         String result;
         ObjectMapper objectMapper = new ObjectMapper();
         objectMapper.setSerializationInclusion(JsonInclude.Include.NON_NULL);
         log.info("ShoppingListResponse - try to Mapping Json");
-        result = objectMapper.writerWithDefaultPrettyPrinter().writeValueAsString(ediblesProductService.findByUserId(request.getUserId()));
+        result = objectMapper.writerWithDefaultPrettyPrinter().writeValueAsString(productService.findByUserId(request.getUserId()));
         log.info("ShoppingListResponse - Successfully Mapped Json");
         return result;
     }
@@ -68,7 +70,7 @@ public class ShoppingListService {
         EdiblesProduct ediblesProduct = new EdiblesProduct();
         ediblesProduct.setUserId(request.getUserId());
         ediblesProduct.setProductName(request.getShoppingListName());
-        ediblesProductService.save(ediblesProduct);
+        productService.save(ediblesProduct);
         return ShoppingListResponse
                 .builder()
                 .status(200)
@@ -85,10 +87,39 @@ public class ShoppingListService {
         log.info("ShoppingListResponse - delete Request");
         EdiblesProduct ediblesProduct = new EdiblesProduct();
         ediblesProduct.setUserId(request.getUserId());
-        ediblesProductService.delete(request.getUserId());
+        productService.delete(request.getUserId());
         return ShoppingListResponse
                 .builder()
                 .status(200)
                 .build();
     }
+
+
+    /**
+     * Обновление списка покупок на основе запроса.
+     *
+     * @param request запрос на обновление списка покупок
+     * @return ответ о статусе выполнения операции
+     */
+    public ShoppingListResponse updateShoppingList(InsertShoppingListRequest request) {
+        log.info("ShoppingListResponse - update Request");
+        List<EdiblesProduct> existingProducts = productService.findByUserId(request.getUserId());
+        if (!existingProducts.isEmpty()) {
+            for (EdiblesProduct existingProduct : existingProducts) {
+                existingProduct.setProductName(request.getShoppingListName());
+                productService.save(existingProduct);
+            }
+            return ShoppingListResponse
+                    .builder()
+                    .status(200)
+                    .build();
+        } else {
+            return ShoppingListResponse
+                    .builder()
+                    .status(404)
+                    .build();
+        }
+    }
+
+
 }
