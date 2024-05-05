@@ -13,7 +13,7 @@ import java.util.List;
  * Репозиторий для работы со списком продуктов
  */
 public interface ProductRepository extends JpaRepository<Product, Long> {
-    @Query(value = "SELECT e FROM Product e WHERE e.userId = :userId ")
+    @Query("SELECT e FROM Product e WHERE e.userId = :userId ")
     List<Product> findByUserId(@Param("userId") int userId);
 
     @Modifying

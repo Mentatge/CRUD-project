@@ -86,23 +86,19 @@ public class ShoppingListService {
      */
     public ShoppingListResponse deleteShoppingList(GetAndDeleteShoppingListRequest request) {
         log.info("ShoppingListResponse - delete Request");
-
-        List<Product> existingProducts = productService.findByUserId(request.getUserId());
-
-        if (!existingProducts.isEmpty()) {
-            for (Product product : existingProducts) {
-                productService.delete(product.getId());
-            }
-            return ShoppingListResponse
-                    .builder()
-                    .status(HttpStatus.OK.value())
-                    .build();
-        } else {
+        if (productService.findByUserId(request.getUserId()).size() == 0) {
             return ShoppingListResponse
                     .builder()
                     .status(HttpStatus.BAD_REQUEST.value())
                     .build();
         }
+        Product ediblesProduct = new Product();
+        ediblesProduct.setUserId(request.getUserId());
+        productService.delete(request.getUserId());
+        return ShoppingListResponse
+                .builder()
+                .status(HttpStatus.OK.value())
+                .build();
     }
 
     /**
