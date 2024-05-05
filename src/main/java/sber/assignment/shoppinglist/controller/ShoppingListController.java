@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.bind.annotation.PutMapping;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 
 import sber.assignment.shoppinglist.dto.GetAndDeleteShoppingListRequest;
@@ -43,7 +44,7 @@ public class ShoppingListController {
      * @return ответ на запрос и соответствующий HTTP статус
      * @throws Exception в случае возникновения ошибки при обработке запроса
      */
-    @PostMapping(value = "/getShoppingList", produces = "application/json")
+    @GetMapping(value = "/getShoppingList", produces = "application/json")
     public ResponseEntity<ShoppingListResponse> getShoppingList(@Validated @RequestBody GetAndDeleteShoppingListRequest request) throws Exception {
         log.info("ShoppingListController - getRequest");
         return ResponseEntity.ok().body(shoppingListService.getShoppingList(request));
