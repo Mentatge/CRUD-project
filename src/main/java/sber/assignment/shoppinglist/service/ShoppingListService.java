@@ -4,6 +4,7 @@ package sber.assignment.shoppinglist.service;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
+import org.springframework.http.HttpStatus;
 import sber.assignment.shoppinglist.dto.GetShoppingListRequest;
 import sber.assignment.shoppinglist.dto.InsertShoppingListRequest;
 import sber.assignment.shoppinglist.dto.ShoppingListResponse;
@@ -73,7 +74,7 @@ public class ShoppingListService {
         productService.save(ediblesProduct);
         return ShoppingListResponse
                 .builder()
-                .status(200)
+                .status(HttpStatus.OK.value())
                 .build();
     }
 
@@ -85,13 +86,23 @@ public class ShoppingListService {
      */
     public ShoppingListResponse deleteShoppingList(GetShoppingListRequest request) {
         log.info("ShoppingListResponse - delete Request");
-        EdiblesProduct ediblesProduct = new EdiblesProduct();
-        ediblesProduct.setUserId(request.getUserId());
-        productService.delete(request.getUserId());
-        return ShoppingListResponse
-                .builder()
-                .status(200)
-                .build();
+
+        List<EdiblesProduct> existingProducts = productService.findByUserId(request.getUserId());
+
+        if (!existingProducts.isEmpty()) {
+            for (EdiblesProduct product : existingProducts) {
+                productService.delete(product.getId());
+            }
+            return ShoppingListResponse
+                    .builder()
+                    .status(HttpStatus.OK.value())
+                    .build();
+        } else {
+            return ShoppingListResponse
+                    .builder()
+                    .status(HttpStatus.BAD_REQUEST.value())
+                    .build();
+        }
     }
 
     /**
@@ -110,15 +121,13 @@ public class ShoppingListService {
             }
             return ShoppingListResponse
                     .builder()
-                    .status(200)
+                    .status(HttpStatus.OK.value())
                     .build();
         } else {
             return ShoppingListResponse
                     .builder()
-                    .status(404)
+                    .status(HttpStatus.BAD_REQUEST.value())
                     .build();
         }
     }
-
-
 }

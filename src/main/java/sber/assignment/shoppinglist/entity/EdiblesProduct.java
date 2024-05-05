@@ -3,6 +3,9 @@ package sber.assignment.shoppinglist.entity;
 import jakarta.persistence.*;
 import lombok.*;
 
+/**
+ * Генерация bd для CRUD
+ */
 @Entity
 @Getter
 @Setter
@@ -10,9 +13,6 @@ import lombok.*;
 @NoArgsConstructor
 @AllArgsConstructor
 @Table(name = "SHOPPING_LIST", schema = "PUBLIC")
-/**
- * Генерация bd для CRUD
- */
 public class EdiblesProduct {
 
     @Id

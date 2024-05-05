@@ -12,7 +12,6 @@ import sber.assignment.shoppinglist.service.exception.ErrorResponseException;
 
 import java.time.LocalDateTime;
 
-
 /**
  * Контроллер
  */

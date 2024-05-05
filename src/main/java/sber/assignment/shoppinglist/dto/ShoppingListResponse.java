@@ -11,13 +11,7 @@ import lombok.*;
 @NoArgsConstructor
 @AllArgsConstructor
 public class ShoppingListResponse {
-    /**
-     * Название продукта
-     */
     private String product;
-    /**
-     * Статус ответа
-     */
     private int status;
 }
 
